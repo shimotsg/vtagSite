@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    
+    <meta name="author" content="gs">
+  
+    
+    <title>track tag search</title>
+
+    <!-- trying to bootstrap css here for flask dir struct-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cover.css')}}">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+
+    
+
+    <!-- Bootstrap core CSS for flask dir struct-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/dist/css/bootstrap.min.css')}}">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="css/cover.css" rel="stylesheet">
+  </head>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0">VinylTag</h3>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link" href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="px-3">
+    <h1>Rip your album, import track names...</h1>
+    <p class="lead">Vinyl Tag generates a text file ready to import with Audacity.</p>
+    <p class="lead">
+    
+    <form>
+      <div class="input-group">
+
+        <input type="text" name="artist" class="form-control rounded" placeholder="Search Artist" aria-label="Search"
+          aria-describedby="search-addon" />
+        <button class="btn btn-outline-primary">search</button>
+
+      </div>
+    </form>
+
+    </p>
+{#    <div class="list-group">#}
+{#        {% for album in albums %}#}
+{#        <a href="#" class="list-group-item list-group-item-action">{{ album.title }}, {{ album.date }}</a>#}
+{#        {% endfor %}#}
+{#    </div>#}
+
+{#      <div class="">#}
+{#          {% for album in albums %}#}
+{#          <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="content">#}
+{#              {{album.title}}, {{ album.date }}#}
+{#            </button>#}
+{#          {% endfor %}#}
+{#      </div>#}
+    <div id="accordion">
+        {% for album in albums %}
+        <div class = "card">
+            <div class="card-header" id="heading{{ album.id }}">
+                <h2 class="mb-0">
+                     <button class="btn btn-link" data-toggle="collapse" data-target="#{{ album.id }}" aria-expanded="false" aria-controls="collapse{{ album.id }}">
+                         {{ album.title }}, {{ album.date }}
+                     </button>
+                </h2>
+            </div>
+            <div id="collapse{{album.id}}" class="collapse show" aria-labelledby="heading{{ album.id }}" data-parent="#accordion">
+                <div class="card-body">
+                    {% for recs in album_tracks %}
+                        {{ recs }}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+  </main>
+
+  <footer class="mt-auto text-white-50">
+    <p>Shoutout <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+  </footer>
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+
+
+</html>
